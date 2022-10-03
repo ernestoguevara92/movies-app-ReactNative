@@ -6,10 +6,9 @@ import qs from 'qs';
 const url = API_URL;
 const key = API_KEY;
 
-export const getMovies = async () => {
+export const getMovies = async (filter) => {
     try {
         const params = {
-            sort_by: 'popularity.desc',
             api_key: key
         }
 
@@ -17,7 +16,7 @@ export const getMovies = async () => {
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
     })
     console.log('PARAMETERS: ', params);
-    const response = await popularMovies.get(url + '/discover/movie', { params });
+    const response = await popularMovies.get(`${url}/movie/${filter}`, { params });
     console.log('RESPONSE:', response.data);
 
     } catch (error) {
