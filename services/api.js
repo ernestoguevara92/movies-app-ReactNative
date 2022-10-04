@@ -27,7 +27,7 @@ export const getMovies = async (filter) => {
     }
 }
 
-export const searchQuery = async (searchString) => {
+export const searchQuery = async (searchString, filter) => {
     try {
         const params = {
             api_key: key,
@@ -37,8 +37,9 @@ export const searchQuery = async (searchString) => {
     const search = axios.create({
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
     });
-    const response = await search.get(`${url}/search/movie/`, { params });
+    const response = await search.get(`${url}/search/${filter}/`, { params });
     console.log('PARAMS: ',params);
+    console.log('FILTER: ', filter);
     console.log('RESPONSE:', response.data.results);
     const searchData = response.data.results;
     return searchData;

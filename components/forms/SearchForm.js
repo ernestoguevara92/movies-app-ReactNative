@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { Button, FormControl, HStack, Icon, Input, VStack } from 'native-base'
+import { Button, CheckIcon, FormControl, HStack, Icon, Input, Select, VStack } from 'native-base'
 
 const SearchForm = props => {
-  const { fetchSearch, onInputChange } = props
+  const { fetchSearch, onInputChange, onSelectChange } = props
   const [formData, setData] = useState()
+  const [currentValue, setCurrentValue] = useState('multi');
 
   const onSubmit = () => {
+    if (formData) {
     fetchSearch()
+    }
   }
 
   return (
@@ -29,8 +32,21 @@ const SearchForm = props => {
               <Icon size={5} ml={2} color='gray.400' as={<Ionicons name='ios-search' />} />
             }
           />
+        </HStack>
+        <HStack width='100%' space={2}>
+          <Select selectedValue={currentValue} placeholder="Multi" minWidth="200" _selectedItem={{
+            bg: "teal.600",
+            endIcon: <CheckIcon size="4" />
+          }} mt={1} onValueChange={itemValue => {
+            onSelectChange(itemValue);
+            setCurrentValue(itemValue);
+            }}>
+              <Select.Item label="Multi" value="multi" />
+              <Select.Item label="Movie" value="movie" />
+              <Select.Item label="TV Show" value="tv" />
+            </Select>
           <Button onPress={onSubmit} startIcon={<Icon as={Ionicons} name='ios-search' />}>
-            Search
+              Search
           </Button>
         </HStack>
       </FormControl>

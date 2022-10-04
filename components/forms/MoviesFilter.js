@@ -11,6 +11,7 @@ const MoviesFilter = props => {
     // }
     if (currentValue === null) {
       fetchMovies();
+      setCurrentValue('popular');
     }
 
 //     const fetchMovies = (filter) => {

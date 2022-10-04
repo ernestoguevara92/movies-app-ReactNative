@@ -4,7 +4,7 @@ import MoviesFilter from '../forms/MoviesFilter';
 import { Container, Center } from 'native-base';
 
 const MoviesTab = () => {
-    const [filter, setFilter] = useState("popular");
+    const [filter, setFilter] = useState('popular');
     const [movies, setMovies] = useState([]);
 
     const handleOnValueChange = filter => {

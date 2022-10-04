@@ -1,30 +1,43 @@
 import { useState } from 'react';
 import { searchQuery } from "../../services/api";
-import { Container, Center } from 'native-base';
+import { Container, Center, Text } from 'native-base';
 import SearchForm from '../forms/SearchForm';
 
 const SearchTab = () => {
     const [search, setSearch] = useState();
-    // const [movies, setMovies] = useState([]);
+    const [filter, setFilter] = useState();
+
+    const onSelectChange = filter => {
+      setFilter(filter);
+    }
 
     const handleOnInputChange = search => {
       setSearch(search);
     }
 
     const fetchSearch= () => {
-      searchQuery(search)
+      searchQuery(search, filter)
     }
 
-    return (
-      <Container>
-        <Center px={4}>
-          <SearchForm fetchSearch={fetchSearch} onInputChange={handleOnInputChange} />
-        </Center>
-        {/* <Center px={4}>
-          <MoviesFilter />
-        </Center> */}
-      </Container>
-    );
+    if (search && filter) {
+      return (
+        <Container>
+           <SearchForm fetchSearch={fetchSearch} onInputChange={handleOnInputChange} onSelectChange={onSelectChange} />
+           <Text>Render Query Results</Text>
+        </Container>
+      );
+    } else {
+      return (
+        <Container>
+          <Center>
+            <SearchForm fetchSearch={fetchSearch} onInputChange={handleOnInputChange} onSelectChange={onSelectChange} />
+          </Center>
+          <Center>
+             <Text>Please initiate a search</Text>
+          </Center>
+        </Container>
+      );
+    }
 }
 
 export default SearchTab;
