@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getMovies } from '../services/api';
+import { getMovies } from '../../services/api';
 import MoviesFilter from '../forms/MoviesFilter';
 import { Container, Center } from 'native-base';
 

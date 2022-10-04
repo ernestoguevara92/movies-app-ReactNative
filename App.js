@@ -3,7 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box, Center, useColorModeValue } from 'native-base';
-import MoviesTab from './containers/MoviesTab';
+import MoviesTab from './components/containers/MoviesTab';
+import SearchTab from './components/containers/SearchTab';
 import Header from './components/layout/Header';
 
 // start of tab view
@@ -13,9 +14,9 @@ const FirstRoute = () =>
   <MoviesTab />
 ;
 
-const SecondRoute = () => <Center flex={1} my="4">
-    This is search results tab
-  </Center>;
+const SecondRoute = () => 
+  <SearchTab />
+;
 
 const ThirdRoute = () => <Center flex={1} my="4">
     This is TV Shows tab

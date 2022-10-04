@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Select, Box, CheckIcon, Center, NativeBaseProvider, VStack, HStack } from 'native-base';
-import { getMovies } from '../services/api';
+import { getMovies } from '../../services/api';
 
 const MoviesFilter = props => {
   const { fetchMovies, onSelectChange } = props
