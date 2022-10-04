@@ -16,8 +16,11 @@ export const getMovies = async (filter) => {
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
     })
     console.log('PARAMETERS: ', params);
+    console.log('FILTER: ', filter);
     const response = await popularMovies.get(`${url}/movie/${filter}`, { params });
-    console.log('RESPONSE:', response.data);
+    console.log('RESPONSE:', response.data.results);
+    const moviesData = response.data.results;
+    return moviesData;
 
     } catch (error) {
         throw error;

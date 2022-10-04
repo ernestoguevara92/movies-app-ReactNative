@@ -3,15 +3,15 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box, Center, useColorModeValue } from 'native-base';
-import { selectMovieFilter } from './components/layout/MoviesTab';
+import MoviesTab from './containers/MoviesTab';
 import Header from './components/layout/Header';
 
 // start of tab view
 // code copied from https://docs.nativebase.io/building-tab-view
 // ***************
-const FirstRoute = () => <Center flex={1} justifyContent="flex-start" my="4">
-    {selectMovieFilter()}
-  </Center>;
+const FirstRoute = () =>
+  <MoviesTab />
+;
 
 const SecondRoute = () => <Center flex={1} my="4">
     This is search results tab
@@ -19,18 +19,18 @@ const SecondRoute = () => <Center flex={1} my="4">
 
 const ThirdRoute = () => <Center flex={1} my="4">
     This is TV Shows tab
-  </Center>;
+  </Center>;  
 
 const initialLayout = {
   width: Dimensions.get('window').width
 };
-const renderScene = SceneMap({
+const renderScene = SceneMap({ 
   first: FirstRoute,
-  second: SecondRoute,
+  second: SecondRoute, 
   third: ThirdRoute,
 });
 
-function Example() {
+function Tabs() {
   const [index, setIndex] = useState(0);
   const [routes] = useState([{
     key: 'first',
@@ -41,7 +41,7 @@ function Example() {
   }, {
     key: 'third',
     title: 'TV Shows'
-  }]);
+  }]); 
 
   const renderTabBar = props => {
     const inputRange = props.navigationState.routes.map((x, i) => i);
@@ -82,7 +82,7 @@ export default function App() {
     <NativeBaseProvider>
       <Header />
       <StatusBar style="auto" />
-      <Example />
+      <Tabs />
     </NativeBaseProvider>
   );
 }

@@ -1,29 +1,32 @@
 import { useState } from 'react';
 import { getMovies } from '../services/api';
-import selectMovieFilter from '../forms/MoviesFilter';
-import { Container } from 'native-base';
+import MoviesFilter from '../forms/MoviesFilter';
+import { Container, Center } from 'native-base';
 
 const MoviesTab = () => {
     const [filter, setFilter] = useState("popular");
     const [movies, setMovies] = useState([]);
-    
-    const fetchMovies = filter => {
-        getMovies(filter).then(movies => {
-            setMovies(movies);
-        });
-    }
 
     const handleOnValueChange = filter => {
       setFilter(filter);
+      getMovies(filter)
+      //console.log('handleOnValueChange FILTER: ', filter);
     }
 
-    console.log('FILTER: ', filter);
+    const fetchMovies= () => {
+      getMovies(filter)
+    }
 
     return (
       <Container>
         <Center px={4}>
-          <selectMovieFilter fetchMovies={fetchMovies} onValueChange={handleOnValueChange} />
+          <MoviesFilter fetchMovies={fetchMovies} onSelectChange={handleOnValueChange} />
         </Center>
+        {/* <Center px={4}>
+          <MoviesFilter />
+        </Center> */}
       </Container>
     );
   };
+
+export default MoviesTab;
