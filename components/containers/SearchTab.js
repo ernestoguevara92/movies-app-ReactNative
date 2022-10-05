@@ -5,7 +5,7 @@ import SearchForm from '../forms/SearchForm';
 
 const SearchTab = () => {
     const [search, setSearch] = useState();
-    const [filter, setFilter] = useState();
+    const [filter, setFilter] = useState('multi');
 
     const onSelectChange = filter => {
       setFilter(filter);

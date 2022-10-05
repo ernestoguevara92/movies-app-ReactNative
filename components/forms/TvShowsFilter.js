@@ -1,21 +1,15 @@
 import { useState } from 'react';
 import { Select, Box, CheckIcon, Center, NativeBaseProvider, VStack, HStack } from 'native-base';
 
-const MoviesFilter = props => {
-  const { fetchMovies, onSelectChange } = props
+const TvShowsFilter = props => {
+  const { fetchTvShows, onSelectChange } = props
   const [currentValue, setCurrentValue] = useState(null);
 
-    // const handleOnValueChange = () => {
-    //   fetchMovies();
-    // }
+    
     if (currentValue === null) {
-      fetchMovies();
+        fetchTvShows();
       setCurrentValue('popular');
     }
-
-//     const fetchMovies = (filter) => {
-//       getMovies(filter)
-// }
 
     return (<>
         <VStack space={2} width='50%' py={5} alignItems="center">
@@ -26,13 +20,12 @@ const MoviesFilter = props => {
           endIcon: <CheckIcon size="4" />
         }} mt={1} onValueChange={itemValue => {
           onSelectChange(itemValue);
-          //handleOnValueChange();
           setCurrentValue(itemValue);
           }}>
             <Select.Item label="Popular" value="popular" />
-            <Select.Item label="Now Playing" value="now_playing" />
+            <Select.Item label="Airing Today" value="airing_today" />
             <Select.Item label="Top Rated" value="top_rated" />
-            <Select.Item label="Upcoming" value="upcoming" />
+            <Select.Item label="On The Air" value="on_the_air" />
           </Select>
         </HStack>
         {/* </Box> */}
@@ -41,4 +34,4 @@ const MoviesFilter = props => {
     )  
 }
 
-export default MoviesFilter;
+export default TvShowsFilter;

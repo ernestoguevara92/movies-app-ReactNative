@@ -33,6 +33,7 @@ const SearchForm = props => {
             }
           />
         </HStack>
+        <FormControl.Label>Search Filter</FormControl.Label>
         <HStack width='100%' space={2}>
           <Select selectedValue={currentValue} placeholder="Multi" minWidth="200" _selectedItem={{
             bg: "teal.600",

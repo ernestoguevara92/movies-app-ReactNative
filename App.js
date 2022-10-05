@@ -5,8 +5,10 @@ import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box, Center, useColorModeValue } from 'native-base';
 import MoviesTab from './components/containers/MoviesTab';
 import SearchTab from './components/containers/SearchTab';
+import TvShowsTab from './components/containers/TvShowsTab';
 import Header from './components/layout/Header';
 
+const windowWidth = Dimensions.get('window').width;
 // start of tab view
 // code copied from https://docs.nativebase.io/building-tab-view
 // ***************
@@ -18,9 +20,9 @@ const SecondRoute = () =>
   <SearchTab />
 ;
 
-const ThirdRoute = () => <Center flex={1} my="4">
-    This is TV Shows tab
-  </Center>;  
+const ThirdRoute = () => 
+<TvShowsTab />
+;  
 
 const initialLayout = {
   width: Dimensions.get('window').width
@@ -83,7 +85,7 @@ export default function App() {
     <NativeBaseProvider>
       <Header />
       <StatusBar style="auto" />
-      <Tabs />
+        <Tabs width={windowWidth} />
     </NativeBaseProvider>
   );
 }
