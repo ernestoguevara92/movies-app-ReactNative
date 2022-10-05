@@ -18,8 +18,8 @@ const AppStack = () => (
                 },
                 headerTitleStyle: {
                     color: '#f5f5f5',
-                    alignSelf: 'center'
-                }
+                },
+                headerTitleAlign: 'center'
               }} />
             <Stack.Screen name='Details' component={DetailsScreen} />
         </Stack.Navigator>
