@@ -13,34 +13,35 @@ const SearchTab = props => {
     const onSelectChange = filter => {
       setFilter(filter);
       if (search) {
-        searchQuery(search, filter).then(results => {
-          setSearchResults(results);
+        searchQuery(search, filter).then(searchResults => {
+          setSearchResults(searchResults);
         });
       }
     }
 
     const handleOnInputChange = search => {
       setSearch(search);
-      searchQuery(search, filter).then(results => {
-        setSearchResults(results)
+      searchQuery(search, filter).then(searchResults => {
+        setSearchResults(searchResults)
       })
     }
 
     const fetchSearch= () => {
-      searchQuery(search, filter).then(results => {
-        setSearchResults(results)
+      searchQuery(search, filter).then(searchResults => {
+        setSearchResults(searchResults)
       })
     }
 
     if (search && filter) {
-      return (
+      return (<Center>
         <Container>
            <SearchForm fetchSearch={fetchSearch} onInputChange={handleOnInputChange} onSelectChange={onSelectChange} />
            <SearchList searchResults={searchResults} navigation={navigation} />
         </Container>
+      </Center>
       );
     } else {
-      return (
+      return (<Center>
         <Container>
           <Center>
             <SearchForm fetchSearch={fetchSearch} onInputChange={handleOnInputChange} onSelectChange={onSelectChange} />
@@ -49,6 +50,7 @@ const SearchTab = props => {
              <Text>Please initiate a search</Text>
           </Center>
         </Container>
+        </Center>
       );
     }
 }

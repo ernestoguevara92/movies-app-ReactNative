@@ -11,6 +11,9 @@ const SearchForm = props => {
     if (formData) {
     fetchSearch()
     }
+    else {
+      alert('Please enter a search term')
+    }
   }
 
   return (
