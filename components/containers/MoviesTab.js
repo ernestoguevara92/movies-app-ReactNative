@@ -5,30 +5,34 @@ import { Container, Center } from 'native-base';
 import MoviesList from '../lists/MoviesList';
 import Loading from '../layout/Loading';
 
-const MoviesTab = () => {
-    const [ isLoading, setIsLoading ] = useState(false);
+const MoviesTab = props => {
+  const { navigation } = props;
+    const [ isLoading, setIsLoading ] = useState(true);
     const [filter, setFilter] = useState('popular');
     const [movies, setMovies] = useState([]);
 
     const handleOnValueChange = filter => {
+      setIsLoading(true);
       setFilter(filter);
       getMovies(filter).then(movies => {
         setMovies(movies)
+        setIsLoading(false)
       })
       //console.log('handleOnValueChange FILTER: ', filter);
     }
 
-    const fetchMovies= () => {
-      getMovies(filter).then(movies => {
+    const fetchMovies= async () => {
+      await getMovies(filter).then(movies => {
         setMovies(movies)
+        setIsLoading(false)
       })
     }
 
     return (
-      <Container ml='auto' mr='auto'>
+      <Container ml='auto' mr='auto' width='100%'>
         <Center>
           <MoviesFilter fetchMovies={fetchMovies} onSelectChange={handleOnValueChange} />
-          {isLoading ? <Loading /> : <MoviesList movies={movies} />}
+          {isLoading ? <Loading /> : <MoviesList width='100%' movies={movies} navigation={navigation} />}
         </Center>
       </Container>
     );

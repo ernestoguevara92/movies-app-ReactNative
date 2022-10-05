@@ -27,6 +27,27 @@ export const getMovies = async (filter) => {
     }
 }
 
+export const getMovie = async (id) => {
+    try {
+        const params = {
+            api_key: key
+        }
+
+    const movie = axios.create({
+        paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
+    })
+    console.log('PARAMETERS: ', params);
+    console.log('ID: ', id);
+    const response = await movie.get(`${url}/movie/${id}`, { params });
+    console.log('RESPONSE:', response.data);
+    const movieData = response.data;
+    return movieData;
+
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const searchQuery = async (searchString, filter) => {
     try {
         const params = {

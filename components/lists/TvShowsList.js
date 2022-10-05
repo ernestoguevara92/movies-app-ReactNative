@@ -1,19 +1,19 @@
 import { FlatList } from "native-base";
 import MovieTvCard from "../listItems/MovieTvCard";
 
-const MoviesList = props => {
-    const { navigation, movies } = props;
+const TvShowsList = props => {
+    const { navigation, tvShows } = props;
 
     return (
         <FlatList
-        data={movies}
+        data={tvShows}
         renderItem={({ item }) => (
             <MovieTvCard 
             id={item.id}
-            image={item.poster_path} 
-            title={item.title}
+            image={item.backdrop_path} 
+            title={item.name}
             popularity={item.popularity}
-            releaseDate={item.release_date}
+            releaseDate={item.first_air_date}
             overview={item.overview}
             navigation={navigation}
             />
@@ -22,4 +22,4 @@ const MoviesList = props => {
     )
 }
 
-export default MoviesList;
+export default TvShowsList;
