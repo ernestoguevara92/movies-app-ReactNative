@@ -1,6 +1,4 @@
 import { Box, Center, Divider, VStack, HStack, Image, Heading, Text, Button } from 'native-base'
-import { useState } from 'react'
-import { getMovie } from '../../services/api'
 import { IMAGE_URL } from '../../services/api_config'
 
 const MovieTvCard = props => {
